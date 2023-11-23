@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException
 from dotenv import load_dotenv
 
 # Import functions
-from gpt_api import functions
+from gpt_api import types, functions
 
 # Initialize FastAPI
 app = FastAPI()
@@ -43,10 +43,10 @@ async def start_conversation():
 
 # Generate response
 @app.post("/chat")
-async def chat():
-    data = request.json
-    thread_id = data.get("thread_id")
-    user_input = data.get("message", "")
+async def chat(dialogueSnippet: types.DialogueSnippet):
+    dialogue = dialogueSnippet.dict()
+    thread_id = dialogue.get("thread_id")
+    user_input = dialogue.get("message", "")
 
     if not thread_id:
         print("Error: Missing thread_id")  # Debugging line
