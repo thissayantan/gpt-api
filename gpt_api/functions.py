@@ -1,6 +1,6 @@
 import json
 import os
-from prompt import instructions
+from gpt_api import prompt
 
 
 def create_assistant(client):
@@ -17,7 +17,7 @@ def create_assistant(client):
         )
 
         assistant = client.beta.assistants.create(
-            instructions=instructions,
+            instructions=prompt.instructions,
             model="gpt-4-1106-preview",
             tools=[{"type": "retrieval"}],
             file_ids=[file.id],
