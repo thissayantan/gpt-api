@@ -2,6 +2,7 @@ import os
 from openai import OpenAI
 from typing import Union
 from fastapi import FastAPI, HTTPException
+from time import sleep
 from dotenv import load_dotenv
 
 # Import functions
